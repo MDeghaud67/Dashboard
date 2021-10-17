@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org>">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign up</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.5.3/css/bootstrap.min.css"/>
+</head>
+<body>
+    <a th:href="@{/signin}"></a>
+    <form action="/signinForm" method="post">
+        email : <input type="email">
+        password : <input type="password">
+        <button type="submit">Connexion</button>
+    </form>
+</body>
+</html>

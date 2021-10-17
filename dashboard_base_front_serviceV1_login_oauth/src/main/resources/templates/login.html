@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign up</title>
+    <!--<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.5.3/css/bootstrap.min.css"/>-->
+</head>
+<body>
+
+<div class="container">
+    <div>
+        <h1>User registration</h1>
+    </div>
+    <div>
+        <h3><a th:href="@{/oauth2/authorization/google}">Login with Google</a></h3>
+        <form th:action="@{/login}" method="post">
+            Email : <input type="email" name="email" required>
+            Password : <input type="password" name="password" required minlength="3">
+            <button type="submit" class="btn btn-primary">Sign in</button>
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>

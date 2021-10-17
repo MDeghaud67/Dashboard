@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <!--<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/4.5.3/css/bootstrap.min.css"/>-->
+</head>
+<body>
+
+    <div class="container">
+        <div>
+            <h1>Home page dashbord</h1>
+        </div>
+        <div>
+            <form th:action="@{/logout}" method="post">
+                <p>
+                    Welcome <b>[[${#request.userPrincipal.getName}]]</b>
+                    Welcome <b>[[${#httpServletRequest.remoteUser}]]</b>
+                </p>
+                <input type="submit" value="Sign Out">
+            </form>
+
+            <h3><a th:href="@{/register}">Register</a></h3>
+            <h3><a th:href="@{/list_users}">List All Users</a></h3>
+            <h3><a th:href="@{/service/weather}">Weather</a></h3>
+        </div>
+    </div>
+
+</body>
+</html>

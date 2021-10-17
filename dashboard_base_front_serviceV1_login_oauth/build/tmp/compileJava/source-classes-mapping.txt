@@ -1,0 +1,38 @@
+com/project/dashboard/controller/MvcConfig.java
+ com.project.dashboard.controller.MvcConfig
+services/DeezerService.java
+ services.DeezerService
+services/GouvService.java
+ services.GouvService
+com/project/dashboard/ServletInitializer.java
+ com.project.dashboard.ServletInitializer
+com/project/dashboard/session/SessionUser.java
+ com.project.dashboard.session.SessionUser
+com/project/dashboard/repository/SessionRepository.java
+ com.project.dashboard.repository.SessionRepository
+com/project/dashboard/security/CustomOAuth2User.java
+ com.project.dashboard.security.CustomOAuth2User
+com/project/dashboard/security/CustomOAuth2UserService.java
+ com.project.dashboard.security.CustomOAuth2UserService
+com/project/dashboard/security/OAuth2LoginSuccessHandler.java
+ com.project.dashboard.security.OAuth2LoginSuccessHandler
+services/OpenWeatherService.java
+ services.OpenWeatherService
+com/project/dashboard/DashboardApplication.java
+ com.project.dashboard.DashboardApplication
+com/project/dashboard/user/AuthentificationProvider.java
+ com.project.dashboard.user.AuthentificationProvider
+com/project/dashboard/user/CustomUserDetailsService.java
+ com.project.dashboard.user.CustomUserDetailsService
+com/project/dashboard/user/CustomUserDetails.java
+ com.project.dashboard.user.CustomUserDetails
+services/GoogleService.java
+ services.GoogleService
+com/project/dashboard/user/User.java
+ com.project.dashboard.user.User
+com/project/dashboard/repository/UserRepository.java
+ com.project.dashboard.repository.UserRepository
+com/project/dashboard/security/WebSecurityConfig.java
+ com.project.dashboard.security.WebSecurityConfig
+com/project/dashboard/controller/MainController.java
+ com.project.dashboard.controller.MainController

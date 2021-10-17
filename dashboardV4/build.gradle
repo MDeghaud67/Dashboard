@@ -1,0 +1,93 @@
+plugins {
+    id 'org.springframework.boot' version '2.4.0'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java'
+    id 'war'
+    //id "com.github.node-gradle.node" version "2.2.4"
+    id "com.github.node-gradle.node" version "3.0.0-rc5"
+}
+
+group = 'com.project'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '15'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+node {
+    version = '14.15.1'
+
+    download = true
+
+    // Set the work directory for unpacking node
+    workDir = file("${project.projectDir}/src/main/myfrontend/nodejs")
+
+    // Set the work directory for NPM
+    npmWorkDir = file("${project.projectDir}/src/main/myfrontend/npm")
+
+    nodeModulesDir = file("${project.projectDir}/src/main/myfrontend")
+}
+
+task appInstallDependencies(type: NpmTask) {
+    dependsOn "npmSetup"
+    execOverrides {
+        it.ignoreExitValue = true;
+        it.workingDir = 'src/main/myfrontend'
+    }
+    args = ["install"]
+}
+
+task npmBuild(type: NpmTask) {
+    dependsOn "appInstallDependencies"
+    execOverrides {
+        it.workingDir = 'src/main/myfrontend'
+    }
+    args = ["run", "build"]
+}
+
+task copyFrontendToBuild(type: Copy) {
+    dependsOn 'npmBuild'
+    from "$projectDir/src/main/myfrontend/build/"
+    into "$buildDir/resources/main/static"
+}
+
+processResources {
+    dependsOn 'copyFrontendToBuild'
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-web-services'
+    implementation 'org.springframework.boot: spring-boot-starter-security'
+    implementation 'org.springframework.security.oauth:spring-security-oauth2:2.5.0.RELEASE'
+    implementation 'org.springframework.social:spring-social-core:1.1.6.RELEASE'
+    implementation 'org.springframework.social:spring-social-config:1.1.6.RELEASE'
+    implementation 'org.springframework.social:spring-social-web:1.1.6.RELEASE'
+    implementation 'org.springframework.social:spring-social-security:1.1.6.RELEASE'
+    implementation 'org.springframework.social:spring-social-google:1.0.0.RELEASE'
+    implementation 'org.springframework.social:spring-social-github:1.0.0.M4'
+    implementation 'org.springframework.social:spring-social-twitterversion:1.1.2.RELEASE'
+    implementation 'org.springframework.social:spring-social-facebookversion:2.0.3.RELEASE'
+    implementation 'org.springframework.social:spring-social-linkedin:1.0.2.RELEASE'
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'mysql:mysql-connector-java'
+    annotationProcessor 'org.projectlombok:lombok'
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+    useJUnitPlatform()
+}
